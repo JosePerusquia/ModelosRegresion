@@ -16,14 +16,15 @@
 #   ylab   : y-axis label
 #   title  : plot title
 hist_res=function(model, fill = "skyblue2",
-                  color = "black", method = "sturges",
+                  color = "black", bins=30,
                   xlab = "", ylab = "", title = "") {
   
   df = data.frame(residuals = residuals(model))
   
+  
+  
   p = ggplot(df, aes(x = residuals)) +
-    geom_histogram(
-      breaks = if (method == "sturges") "Sturges" else waiver(),
+    geom_histogram(bins = bins,
       colour = color,
       fill = fill
     ) +
